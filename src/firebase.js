@@ -1,33 +1,17 @@
-import { initializeApp } from 'firebase/app';
-import {
-  getAuth, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup,
-  setPersistence, inMemoryPersistence
-} from 'firebase/auth';
-import {
-  getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp,
-  doc, updateDoc, setDoc, getDocs, where, deleteDoc
-} from 'firebase/firestore';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAoOsog2NP6Pf8YNSxn0rRYK4MSLEVNNZc",
-  authDomain: "niltask.firebaseapp.com",
-  projectId: "niltask",
-  storageBucket: "niltask.firebasestorage.app",
-  messagingSenderId: "868641827920",
-  appId: "1:868641827920:web:70d9db79a361a76468f555"
+  apiKey: "AIzaSyDxtK1lW6dhyS9bBk9Al_V-g-Xto_INd1Q",
+  authDomain: "tt-talkandtask.firebaseapp.com",
+  projectId: "tt-talkandtask",
+  storageBucket: "tt-talkandtask.firebasestorage.app",
+  messagingSenderId: "732714427176",
+  appId: "1:732714427176:web:dedc63e52818dc7324661d"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-
-export {
-  onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup,
-  setPersistence, inMemoryPersistence,
-  collection, addDoc, onSnapshot, query, orderBy, serverTimestamp,
-  doc, updateDoc, setDoc, getDocs, where, deleteDoc,
-  ref, uploadBytesResumable, getDownloadURL
-};
