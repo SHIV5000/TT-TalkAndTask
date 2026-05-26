@@ -1,9 +1,13 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { 
+  initializeFirestore, 
+  persistentLocalCache, 
+  persistentMultipleTabManager 
+} from "firebase/firestore";
 
-// Your web app's Firebase configuration
+// Your new web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDxtK1lW6dhyS9bBk9Al_V-g-Xto_INd1Q",
   authDomain: "tt-talkandtask.firebaseapp.com",
@@ -15,3 +19,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Auth & Storage and export them
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+
+// Initialize Firestore with Offline Persistence to save reads and export it
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager()
+  })
+});
