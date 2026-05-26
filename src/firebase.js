@@ -1,10 +1,39 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
+import { 
+  getAuth, 
+  onAuthStateChanged, 
+  signOut, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  setPersistence, 
+  inMemoryPersistence,
+  browserLocalPersistence 
+} from "firebase/auth";
+import { 
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL
+} from "firebase/storage";
 import { 
   initializeFirestore, 
   persistentLocalCache, 
-  persistentMultipleTabManager 
+  persistentMultipleTabManager,
+  collection, 
+  query, 
+  where, 
+  getDocs, 
+  setDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  serverTimestamp,
+  limit,
+  writeBatch,
+  getDoc
 } from "firebase/firestore";
 
 // Your new web app's Firebase configuration
@@ -20,13 +49,50 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Auth & Storage and export them
+// Initialize core services
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
-// Initialize Firestore with Offline Persistence to save reads and export it
+// Initialize Firestore with Offline Persistence to save reads
 export const db = initializeFirestore(app, {
   localCache: persistentLocalCache({
     tabManager: persistentMultipleTabManager()
   })
 });
+
+// Re-export Auth functions to satisfy App.jsx
+export {
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  setPersistence,
+  inMemoryPersistence,
+  browserLocalPersistence
+};
+
+// Re-export Firestore functions to satisfy App.jsx
+export {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  serverTimestamp,
+  limit,
+  writeBatch,
+  getDoc
+};
+
+// Re-export Storage functions
+export {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL
+};
